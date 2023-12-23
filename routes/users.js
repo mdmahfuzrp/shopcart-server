@@ -9,14 +9,17 @@ router.post("/", async (req, res) => {
       return res.status(400).send({ message: error.details[0].message });
     }
 
+    // User already exist or not
     const user = await User.findOne({ email: req.body.email });
     if (user) {
       return res.status(409).send({ message: "User already exist!" });
     }
 
+    // For security hashPassword creating
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
+    // Creating new user
     await new User({ ...req.body, password: hashPassword }).save();
     res.status(201).send({ message: "User created successfully" });
   } catch (error) {
