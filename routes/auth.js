@@ -3,7 +3,7 @@ const { User } = require("../models/user");
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
 
-router.post("/", async (req, res) => {
+router.post("/",  async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error) {
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 
     // Generate auth token
     const token = user.generateAuthToken();
-    res.status(200).send({ data: token, message: "Logged in successfully" });
+    res.status(200).send({ token: token, data: user, message: "Logged in successfully" });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
