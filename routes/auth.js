@@ -13,17 +13,19 @@ router.post("/", async (req, res) => {
     // Checking email valid or wrong
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(401).send({ message: "Invalid Email or Password" });
+      return res.status(401).send({ message: "Invalid Email Address" });
     }
 
+    // Checking password valid or wrong
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
     if (!validPassword) {
-      return res.status(401).send({ message: "Invalid Email or Password" });
+      return res.status(401).send({ message: "Incorrect Password" });
     }
 
+    // Generate auth token
     const token = user.generateAuthToken();
     res.status(200).send({ data: token, message: "Logged in successfully" });
   } catch (error) {
@@ -31,6 +33,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Validate user email and password
 const validate = (data) => {
   const schema = Joi.object({
     email: Joi.string().email().required().label("Email"),
