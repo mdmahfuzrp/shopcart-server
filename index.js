@@ -6,6 +6,9 @@ const port = process.env.PORT || 5000;
 const connection = require('./db');
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
+const allProducts = require('./routes/allProduct');
+const addToCart = require('./routes/addToCart');
+const userCartItems = require('./routes/userCartItems');
 
 // database connection
 connection();
@@ -17,6 +20,9 @@ app.use(cors());
 // routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/products', allProducts);
+app.use('/api/add-to-cart', addToCart);
+app.use('/api/user/:userId/cart-items', userCartItems)
 
 // Get
 app.get('/', (req, res) => {
