@@ -23,7 +23,9 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/products', allProducts);
 app.use('/api/add-to-cart', addToCart);
+// All cart items for specific user
 app.use('/api/user', userCartItems);
+// Delete single cart item route
 app.use('/api/cart', removeCartItem);
 
 // Get
