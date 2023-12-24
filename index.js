@@ -10,6 +10,7 @@ const allProducts = require('./routes/allProduct');
 const addToCart = require('./routes/addToCart');
 const userCartItems = require('./routes/userCartItems');
 const removeCartItem = require('./routes/removeCarItem');
+const removeAllCartItems = require('./routes/removeAllCartItems');
 
 // database connection
 connection();
@@ -31,6 +32,8 @@ app.use('/api/add-to-cart', addToCart);
 app.use('/api/user', userCartItems);
 // Delete single cart item route
 app.use('/api/cart', removeCartItem);
+// Reset all item for specific user route
+app.use('/api/cart', removeAllCartItems)
 
 // Get
 app.get('/', (req, res) => {
