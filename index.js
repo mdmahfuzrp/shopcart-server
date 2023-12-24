@@ -19,11 +19,15 @@ app.use(express.json());
 app.use(cors());
 
 // routes
+// Register
 app.use('/api/users', userRoutes);
+// Login route
 app.use('/api/auth', authRoutes);
+// Get all product route
 app.use('/api/products', allProducts);
+// Add new item in user cart collection route
 app.use('/api/add-to-cart', addToCart);
-// All cart items for specific user
+// All cart items for specific user route
 app.use('/api/user', userCartItems);
 // Delete single cart item route
 app.use('/api/cart', removeCartItem);
