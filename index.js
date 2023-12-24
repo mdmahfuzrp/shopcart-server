@@ -9,6 +9,7 @@ const authRoutes = require('./routes/auth');
 const allProducts = require('./routes/allProduct');
 const addToCart = require('./routes/addToCart');
 const userCartItems = require('./routes/userCartItems');
+const removeCartItem = require('./routes/removeCarItem');
 
 // database connection
 connection();
@@ -22,7 +23,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/products', allProducts);
 app.use('/api/add-to-cart', addToCart);
-app.use('/api/user/:userId/cart-items', userCartItems)
+app.use('/api/user', userCartItems);
+app.use('/api/cart', removeCartItem);
 
 // Get
 app.get('/', (req, res) => {

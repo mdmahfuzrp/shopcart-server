@@ -3,7 +3,7 @@ const { User } = require("../models/user");
 const CartItem = require('../models/CartItem');
 
 router.post('/', async (req, res) => {
-  const { useremail, img, productName, price, colors, badge, des, sizes } = req.body;
+  const { useremail, img, productName, price, quantity, color, badge, des, size } = req.body;
 
   try {
     // Find the user by email
@@ -30,11 +30,13 @@ router.post('/', async (req, res) => {
       img,
       productName,
       price,
-      colors,
+      quantity,
+      color,
       badge,
       des,
-      sizes,
+      size,
     });
+    console.log(cartItem);
 
     // Save the new cart item
     await cartItem.save();

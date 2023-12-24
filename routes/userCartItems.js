@@ -2,7 +2,7 @@ const router = require("express").Router();
 const CartItem = require('../models/CartItem');
 
 // Route to fetch cart items for a specific user
-router.get('/', async (req, res) => {
+router.get('/:userId/cart-items', async (req, res) => {
   const userId = req.params.userId;
   console.log(userId);
 
